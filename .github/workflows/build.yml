@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Shell
+        run: |
+          pwd
+          ls -ltr
+          sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/api-ingress-solution.yml
+          sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/deployment-solution.yml
+          sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/service-solution.yml
+          sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/api-ingress-solution.yml
+          sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/deployment-solution.yml
+          sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/service-solution.yml
+          sed -i "s/<VERSION>/${{ github.sha }}/g" devops/kubernetes/deployment-solution.yml
+      
+      - name: Debug files
+        run: |
+          cat devops/kubernetes/api-ingress-solution.yml
+          cat devops/kubernetes/deployment-solution.yml
+          cat devops/kubernetes/service-solution.yml
+         
+      - name: Set kubernetes secrets
+        uses: azure/k8s-set-context@v2
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: k8s deployment
+        run: |
+          helm list
+          kubectl apply -f devops/kubernetes/api-ingress-solution.yml
+          kubectl apply -f devops/kubernetes/deployment-solution.yml
+          kubectl apply -f devops/kubernetes/service-solution.yml

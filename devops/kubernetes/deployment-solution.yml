@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <solution-name>
+  labels:
+    app: <solution-name>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: <solution-name>
+  template:
+    metadata:
+      labels:
+        app: <solution-name>
+    spec:
+      containers:
+        - name: <solution-name>
+          image: ghcr.io/<solution-owner>/<solution-name>:latest
+          imagePullPolicy: Always
+          env:
+          - name: PYTHONUNBUFFERED
+            value: "0"
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
+      restartPolicy: Always
+
+
+
+     

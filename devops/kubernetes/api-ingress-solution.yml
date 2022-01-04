@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <solution-name>
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - hosts:
+    - aicollaboration.net
+    secretName: tls-latest-aicollaboration.net
+  rules:
+  - host: <solution-name>.<solution-owner>.aicollaboration.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: <solution-name>
+          servicePort: 80
