@@ -19,14 +19,19 @@ jobs:
         run: |
           pwd
           ls -ltr
+
           sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/api-ingress-solution.yml
           sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/deployment-solution.yml
           sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/service-solution.yml
           sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" devops/kubernetes/certificate.yml
+          sed -i "s/<solution-owner>/${GITHUB_REPOSITORY%/*}/g" README.md
+
           sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/api-ingress-solution.yml
           sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/deployment-solution.yml
           sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/service-solution.yml
           sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" devops/kubernetes/certificate.yml
+          sed -i "s/<solution-name>/${GITHUB_REPOSITORY#*/}/g" README.md
+
           sed -i "s/<VERSION>/${{ github.sha }}/g" devops/kubernetes/deployment-solution.yml
       
       - name: Debug files

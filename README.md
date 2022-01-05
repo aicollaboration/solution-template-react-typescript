@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with <solution-name> from <solution-owner>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This solution will be deployed on [https://<solution-name>.<solution-owner>.aiproduct.io](https://<solution-name>.<solution-owner>.aiproduct.io)
 
 ## Available Scripts
 
