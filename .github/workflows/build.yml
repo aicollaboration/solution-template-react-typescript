@@ -48,3 +48,4 @@ jobs:
           kubectl apply -f devops/kubernetes/api-ingress-solution.yml
           kubectl apply -f devops/kubernetes/deployment-solution.yml
           kubectl apply -f devops/kubernetes/service-solution.yml
+          kubectl apply -f devops/kubernetes/certificate.yml
