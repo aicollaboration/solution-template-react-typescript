@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-latest-aiproduct.io
+  namespace: default
+spec:
+  dnsNames:
+    - aiproduct.io
+    - aicollaboration.net
+    - question-answering.aiproduct.io
+    - predictive-basket.aiproduct.io
+    - <solution-name>.<solution-owner>.aicollaboration.net
+  secretName: tls-latest-aiproduct.io
+  issuerRef:
+    name: letsencrypt-cluster-issuer
+    kind: ClusterIssuer
