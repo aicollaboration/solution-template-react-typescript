@@ -9,7 +9,8 @@ spec:
     - aicollaboration.net
     - question-answering.aiproduct.io
     - predictive-basket.aiproduct.io
-    - <solution-name>.<solution-owner>.aicollaboration.net
+    - <solution-owner>.aiproduct.io
+    - <solution-name>.<solution-owner>.aiproduct.io
   secretName: tls-latest-aiproduct.io
   issuerRef:
     name: letsencrypt-cluster-issuer

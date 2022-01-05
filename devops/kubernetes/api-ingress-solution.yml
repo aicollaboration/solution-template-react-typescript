@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - aicollaboration.net
-    secretName: tls-latest-aicollaboration.net
+    - aiproduct.io
+    secretName: tls-latest-aiproduct.io
   rules:
-  - host: <solution-name>.<solution-owner>.aicollaboration.net
+  - host: <solution-name>.<solution-owner>.aiproduct.io
     http:
       paths:
       - path: /

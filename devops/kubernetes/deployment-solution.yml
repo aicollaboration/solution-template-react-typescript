@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: <solution-name>
-          image: ghcr.io/<solution-owner>/<solution-name>:latest
+          image: ghcr.io/aicollaborationsolutions/solution:latest
           imagePullPolicy: Always
           env:
           - name: PYTHONUNBUFFERED
