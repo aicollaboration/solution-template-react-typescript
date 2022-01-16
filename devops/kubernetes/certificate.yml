@@ -7,8 +7,10 @@ spec:
   dnsNames:
     - aiproduct.io
     - aicollaboration.net
+    - aicollaboration.com
     - question-answering.aiproduct.io
     - predictive-basket.aiproduct.io
+    - "*.aiproduct.io"
     - <solution-owner>.aiproduct.io
     - <solution-name>.<solution-owner>.aiproduct.io
   secretName: tls-latest-aiproduct.io
