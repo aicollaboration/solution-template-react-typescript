@@ -37,7 +37,6 @@ jobs:
           cat devops/kubernetes/api-ingress-solution.yml
           cat devops/kubernetes/deployment-solution.yml
           cat devops/kubernetes/service-solution.yml
-          cat devops/kubernetes/certificate.yml
          
       - name: Set kubernetes secrets
         uses: azure/k8s-set-context@v2
@@ -51,4 +50,3 @@ jobs:
           kubectl apply -f devops/kubernetes/api-ingress-solution.yml
           kubectl apply -f devops/kubernetes/deployment-solution.yml
           kubectl apply -f devops/kubernetes/service-solution.yml
-          kubectl apply -f devops/kubernetes/certificate.yml
