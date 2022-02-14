@@ -50,3 +50,12 @@ jobs:
           kubectl apply -f devops/kubernetes/api-ingress-solution.yml
           kubectl apply -f devops/kubernetes/deployment-solution.yml
           kubectl apply -f devops/kubernetes/service-solution.yml
+      
+      - name: Report Status
+        if: always()
+        uses: ravsamhq/notify-slack-action@master
+        with:
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          channel_name: github-job-notification
